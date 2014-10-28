@@ -1,0 +1,22 @@
+.Jumbheader {
+	background-image: url("../img/gif.gif");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	height: 500px;
+	width: 100%;
+	display: table;
+	border-bottom: 5px solid black;
+}
+
+.navbar {
+	max-height: 0px;
+}
+
+.headerNav {
+	font-size: 30px;
+	text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+	color: white;
+	margin-top: 6px;
+}
+
+
