@@ -24,7 +24,7 @@
 	<center>
 	  <button type="button" class="btn btn-custom" onclick="window.location.href='pokedex/'">POKEDEX</button>
 	  <button type="button" class="btn btn-custom">TRAINERS</button> 
-	  <button type="button" class="btn btn-custom">MEOWPEDIA</button>
+	  <button type="button" class="btn btn-custom" onclick="window.location.href='meowpedia/'">MEOWPEDIA</button>
 	  <button type="button" class="btn btn-custom">COMPARE</button>
 	  <br /><br />
 	  <form action="pokedex/index.php" class="searchBox">
