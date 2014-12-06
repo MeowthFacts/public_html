@@ -8,10 +8,6 @@ error_reporting(E_ALL);
 $url = $_SERVER['QUERY_STRING'];
 parse_str($url);
 
-if(isset($pokemon)){
-  echo $pokemon;
-}
-
 echo (" ");
 include('../phpfuncts/getPokemon.php');
 ?>
@@ -25,6 +21,9 @@ include('../phpfuncts/getPokemon.php');
     <link href="../css/styles.css" rel="stylesheet" media="screen">
   </head>
 
+<?php
+include('../header.php');
+?>
 
 	
 
@@ -33,20 +32,17 @@ include('../phpfuncts/getPokemon.php');
 	<center>
 	  <br /><br /><br />
 	  <form class="searchBox">
-	  <input type="text" class="searchTextBox" name="pokemon" placeholder="Enter Username or Pokemon to Search">
+	  <input type="text" class="searchTextBox" name="pokemon" placeholder="Enter a Pokemon to Search">
 	  <button type="submit" class="btn btn-custom" value="searchBut">Search</button>
 	  </form>
 	</center>
     </div>
 
 <center>
-<?php
 
-//IF PERSON IS SEARCHING WHOLE POKEDEX OR JUST PARTICULAR POKEMON
-    if(!isset($pokemon)){
-      $result = getAllPokemon();
-      ?>
-      <table class="table">
+
+    <div class="parentPokedex">
+      <table class="table pokedexTable">
       <thead>
         <tr>
           <th>#</th>
@@ -54,7 +50,24 @@ include('../phpfuncts/getPokemon.php');
           <th>Pokemon</th>
         </tr>
       </thead>
-      <?
+    <?php
+    //IF PERSON IS SEARCHING WHOLE POKEDEX OR JUST PARTICULAR POKEMON
+
+      if(!isset($pokemon)){
+        $result = getAllPokemon();
+
+      while(!isset($profile) && $value = getNext($result)){
+	if($value->ID < 10000){
+	    ?><tr>
+	    <td><?echo (sprintf("%03s", $value->SPECIES_ID));
+	    ?><td><?echo ("<img src='../dbimgs/".(($value->SPECIES_ID)).".png'>");
+	    ?><td><?echo ("<a href='profile.php?pokemon=".$value->SPECIES_ID."'>".ucwords($value->IDENTIFIER ."</a>"));
+	    ?></td></tr><?
+	}
+      }
+    }else{
+      $result = getPokemon($pokemon);
+      $i = 0;
       while(!isset($profile) && $value = getNext($result)){
 	if($value->ID < 10000){
 	  ?><tr>
@@ -63,18 +76,15 @@ include('../phpfuncts/getPokemon.php');
 	  ?><td><?echo ("<a href='profile.php?pokemon=".$value->SPECIES_ID."'>".ucwords($value->IDENTIFIER ."</a>"));
 	  ?></td></tr><?
 	}
-      }
-    }else{
-      $result = getPokemon($pokemon);
-      $i = 0;
-      while(!isset($profile) && $value = getNext($result)){
-	echo ("<img src='../dbimgs/".$value->SPECIES_ID.".png'>"."  <a href='profile.php?pokemon=".$value->SPECIES_ID."'>".ucwords($value->IDENTIFIER ."</a>". " ID:" . $value->SPECIES_ID ));
-	echo ("<br />");
 	$i = 1;
       }
       
       ?>
       </table>
+      <table class="pokedexTable1">
+	<td></td>
+      </table>
+    </div>
       <?php
       if(!isset($profile) && $i = 0 && $value == false){
 	echo "Pokemon not found";
@@ -84,9 +94,6 @@ include('../phpfuncts/getPokemon.php');
 ?>
 </center>
 
-<?php
-include('../header.php');
-?>
 
 
   </body>

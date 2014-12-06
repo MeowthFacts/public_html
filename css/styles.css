@@ -1,11 +1,42 @@
+@font-face {
+
+    font-family: pokemonFont;
+
+    src: url('../fonts/pokemon.ttf');
+
+}
+html,body{
+height: 100%;
+width: 100%;
+min-height: 100%;
+
+}
+
+body{
+	font-family: pokemonFont;
+}
+button{
+box-shadow:0px 0px 8px #000000;
+}
+
 .Jumbheader {
-	background-image: url("../img/gif.gif");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	height: 500px;
+    background: rgba(0,0,0,.5);
+    background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
 	width: 100%;
 	display: table;
-	border-bottom: 5px solid black;
+	min-height: 100%;
+
+	
+}
+#morgans{
+	padding-top: 15%;
+
+}
+#buttonSearch{
+
+  padding-top: 20%;
 }
 
 .navbar {
@@ -30,30 +61,168 @@
 }
 
 
+.pokedexTable {
+	width:50%;
+}
+
+.pokemonTable {
+	width:75%;
+}
+.userTable {
+	width:75%;
+}
+
+table.eggGroup {
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+table.types {
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pokedexcolumnheader {
+
+}
+
+tr.types {
+    padding-top: 10px;
+}
+
+.moveTableCell{
+    padding-right:100px;
+}
+
+.meowpediaButton{
+    background:none!important;
+    border:none;
+    padding:0!important;
+    cursor: pointer;
+    box-shadow: none;
+    color: #00a1d2;
+}
+
+button.types {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    color: #ffffff;
+    padding: 10px 10px 10px 10px;
+    margin: 5px 5px 5px 5px;
+    border: solid #222222 2px;
+    width: 140px;
+    text-decoration: none;
+}
+button.types:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+}
+
+#normal {
+    background:#A8A878;
+}
+
+#fighting {
+    background:#C03028;
+}
+
+#flying {
+    background:#A890F0;
+}
+
+#poison{
+    background:#A040A0;
+}
+
+#ground{
+    background:#E0C068;
+}
+
+#rock{
+    background:#B8A038;
+}
+
+#bug{
+    background:#A8B820;
+}
+
+#ghost{
+    background:#705898;
+}
+
+#steel{
+    background:#B8B8D0;
+}
+
+#fire{
+    background:#F08030;
+}
+
+#water{
+    background:#6890F0;
+}
+
+#grass{
+    background:#78C850;
+}
+
+#electric{
+    background:#F8D030;
+}
+
+#psychic{
+    background:#F85888;
+}
+
+#ice{
+    background:#98D8D8;
+}
+
+#dragon{
+    background:#7038F8;
+}
+
+#dark{
+    background:#705848;
+}
+
+#fairy{
+    background:#EE99AC;
+
+}
 
 
 
 
+#trainerinfo{
+	border-style: ridge;
+    border-color: #353543;
+    border-width: 10px;
+    text-align: center;
+}
+#pokemon{
+    background: #fff;
+    border-style: ridge;
+    border-color: #353543;
+    border-width: 10px;
+   
+}
+#pokebox{
+	text-align: center;
+   
+}
 
+#trainName{
 
-
-
-
-
-
-.btn-custom { 
-	background-color: hsl(140, 11%, 22%) !important; 
-	background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#9eb1a5", endColorstr="#313e36"); 
-	background-image: -khtml-gradient(linear, left top, left bottom, from(#9eb1a5), to(#313e36)); 
-	background-image: -moz-linear-gradient(top, #9eb1a5, #313e36); 
-	background-image: -ms-linear-gradient(top, #9eb1a5, #313e36); 
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9eb1a5), color-stop(100%, #313e36)); 
-	background-image: -webkit-linear-gradient(top, #9eb1a5, #313e36); 
-	background-image: -o-linear-gradient(top, #9eb1a5, #313e36); 
-	background-image: linear-gradient(#9eb1a5, #313e36); 
-	border-color: #313e36 #313e36 hsl(140, 11%, 11%); 
-	color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.72); -webkit-font-smoothing: antialiased; }
-
-
-
-
+    text-align: center;
+}
+IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

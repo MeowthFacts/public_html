@@ -12,15 +12,19 @@
                     <span class="icon-bar"></span>
                     </button>
 
+
                     <h2 class="headerNav"><a href="http://www.cise.ufl.edu/~jkegley/">MeowthFacts</a></h2>
+		
+
+
                     
             </div>
             
             <!-- NAVIGATION LINKS -->
             <div class="navbar-collapse collapse" id="kane-navigation">
                     <ul class="nav navbar-nav navbar-right main-navigation">
-                            <li class="insideLi"><a href="#brief1">Login</a></li>
-                            <li class="insideLi"><a href="#brief1">Register</a></li>
+                            <!--<li class="insideLi"><a href="login.html">Login</a></li>
+                            <li class="insideLi"><a href="http://www.cise.ufl.edu/~jkegley/register.html">Register</a></li>-->
                     </ul> 
             </div>
     </div> 
@@ -28,4 +32,3 @@
 
 <!--Below is JS and Bootstrap JS-->
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
