@@ -1,0 +1,16 @@
+#moveTables{
+
+    height: 200px;
+    overflow: scroll;
+    border: ridge;
+    border-color: #353543;
+    border-width: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+	overflow-x:hidden;
+}
+#pokemonTypeSelector{
+	 margin: 0 auto;
+    text-align: center;
+
+}

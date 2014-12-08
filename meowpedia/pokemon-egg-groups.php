@@ -14,12 +14,12 @@ include('../phpfuncts/getNext.php');
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">    
     <link href="../css/styles.css" rel="stylesheet" media="screen">
   </head>
-  <body>
+  <body class="meowped">
       <br /><br /><br /><br />
   
   <?
-    $gID = $_POST["groupID"];
-    $groupName = $_POST["groupName"];
+    $gID = $_GET["groupID"];
+    $groupName = $_GET["groupName"];
 ?>
    <h3>Pokemon in the <?echo($groupName); ?> Egg Group</h3> <br /><br />
   <?php

@@ -5,12 +5,7 @@
             <div class="navbar-header">
                     
                     <!-- LOGO ON STICKY NAV BAR -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kane-navigation">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
+
 
 
                     <h2 class="headerNav"><a href="http://www.cise.ufl.edu/~jkegley/">MeowthFacts</a></h2>

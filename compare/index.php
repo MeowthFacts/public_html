@@ -5,6 +5,7 @@
 include('../phpfuncts/connection.php');
 include('../phpfuncts/getNext.php');
 
+
 function getNamesIDs(){
     $connection = connection();
 
@@ -31,55 +32,60 @@ $current = getNext($list);
 <br /><br />
 <br /><br />
 
-<div class="container">
+<div id ="compcont" class="container">
     <div class="row">
         <div class="col-*-*"></div>
     </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <form class="form-horizontal">
-                <fieldset>
+    <div id ="comparer" class="row">
+        <div id="conty" class="col-xs-6">
+            <form id="lol3" class="form-horizontal">
+                <fieldset id="lol4">
 
                     <!-- Form Name -->
                     <legend>Pokemon 1</legend>
 
                     <!-- Select Basic -->
-                    <div class="control-group">
+                    <div id="lol1" class="control-group">
                         <label class="control-label" for="selectbasic"></label>
-                        <div class="controls">
-                            <select id="selectbasic" name="selectbasic" class="input-medium">
+                        <div id = "lol2" class="controls">
+                            <select id="selectbasic" name="selectbasic" class="input-medium" onchange="update1(this.value)">
                                 <option>-Choose Pokemon 1-</option>
                                 <?php while ( $current ){ ?>
-                                    <option><? echo(ucwords($current->IDENTIFIER)); ?></option>
+                                    <option value="<? echo(ucwords($current->ID)); ?>"><? echo(ucwords($current->IDENTIFIER)); ?></option>
                                 <? $current = getNext($list); }?>
 
                             </select>
+
+                            <br /><iframe id="frame1" frameBorder = "0" src="http://www.cise.ufl.edu/~jkegley/pokedex/profile1.php?pokemon=1"></iframe>
+
                         </div>
                     </div>
 
                 </fieldset>
             </form>
         </div>
-        <div class="col-xs-6">
-            <form class="form-horizontal">
-                <fieldset>
+        <div id="conty" class="col-xs-6">
+            <form id="lol3" class="form-horizontal">
+                <fieldset id ="lol4">
 
                     <!-- Form Name -->
                     <legend>Pokemon 2</legend>
 
                     <!-- Select Basic -->
-                    <div class="control-group">
+                    <div id="lol1" class="control-group">
                         <label class="control-label" for="selectbasic"></label>
-                        <div class="controls">
-                            <select id="selectbasic" name="selectbasic" class="input-medium">
+                        <div id = "lol2" class="controls">
+                            <select id="selectbasic" name="selectbasic" class="input-medium" onchange="update2(this.value)">
                                 <option>-Choose Pokemon 2-</option>
                                 <?php
                                 $list = getNamesIDs();
                                 $current = getNext($list);
                                 while ( $current ){ ?>
-                                    <option><? echo(ucwords($current->IDENTIFIER)); ?></option>
+                                    <option value="<? echo(ucwords($current->ID)); ?>"><? echo(ucwords($current->IDENTIFIER)); ?></option>
                                     <? $current = getNext($list); }?>
                             </select>
+			    <br /><iframe id="frame2" frameBorder = "0" src="http://www.cise.ufl.edu/~jkegley/pokedex/profile1.php?pokemon=1"></iframe>
+
                         </div>
                     </div>
 
@@ -87,8 +93,22 @@ $current = getNext($list);
             </form>
         </div>
     </div>
+
 </div>
 
+<script>
+    function update1(thing){
+
+        var iframe = document.getElementById("frame1");
+        iframe.src = "http://www.cise.ufl.edu/~jkegley/pokedex/profile1.php?pokemon=" + thing;
+        //var src1 = "http://www.cise.ufl.edu/~jkegley/pokedex/profile.php?pokemon=" + thing + "/#pokeandtype";
+        //iframe.src = src1;
+    }
+    function update2(thing){
+        var iframe = document.getElementById("frame2");
+        iframe.src = "http://www.cise.ufl.edu/~jkegley/pokedex/profile1.php?pokemon=" + thing;
+    }
+</script>
 <?php
 include('../header.php');
 ?>

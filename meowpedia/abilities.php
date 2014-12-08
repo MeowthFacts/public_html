@@ -15,7 +15,7 @@ include('../phpfuncts/getNext.php');
     <link href="../css/styles.css" rel="stylesheet" media="screen">
 </head>
 
-<body>
+<body class="meowped">
 <br /><br /><br /><br />
 <h1>Abilities</h1>
 
@@ -50,7 +50,7 @@ $current = getNext($result);
     while ( $current ){ ?>
         <tr>
             <td><br />
-                <form action='pokemon-abilities.php' method='post'>
+                <form action='pokemon-abilities.php' method='get'>
                     <input type='hidden' name='abilityID' value ='<? echo($current->ID); ?>'>
                     <button class="meowpediaButton" type="submit" name="abilityName" value="<? echo(ucfirst($current->IDENTIFIER)); ?>"><? echo(ucfirst($current->IDENTIFIER)); ?></button>
                 </form>

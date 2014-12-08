@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
     require('connection.php');
     
@@ -23,7 +22,15 @@
 
         return $statement;
     }
+    function getTrainers($person){
+        $connection = connection();
 
+        $statement = oci_parse($connection, 'SELECT * FROM trainers WHERE name LIKE LOWER(\'%'.$person.'%\') ORDER BY trainer_id ASC');
+        oci_execute($statement);
+
+
+        return $statement;
+    }
     function getPokemonProfile($pokemon){
         $connection = connection();
         
@@ -34,7 +41,7 @@
         $type1 = -1;
         $type2 = -1;
         
-        $statement = oci_parse($connection, 'SELECT type_names.name FROM pokemon_types, type_names WHERE type_names.TYPE_ID = pokemon_types.type_id AND pokemon_types.POKEMON_ID = '.$thePokemon->ID);
+        $statement = oci_parse($connection, 'SELECT type_names.name, type_names.TYPE_ID FROM pokemon_types, type_names WHERE type_names.TYPE_ID = pokemon_types.type_id AND pokemon_types.POKEMON_ID = '.$thePokemon->ID);
         oci_execute($statement);
       
 

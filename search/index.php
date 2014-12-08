@@ -51,20 +51,19 @@ $pokemon = $search;
 
       //Returns Table of People
       if(isset($search)){
-	$pokemomResult = getPokemon($pokemon);
-      
-    
-	while($value = getNext($pokemomResult)){
-	  if($value->ID < 10000){
-	    ?><tr>
-	    
-	    <td><?echo (sprintf("%03s", $value->SPECIES_ID));
-	    ?>
-	    <?echo ("<a href='../users/profile.php?pokemon=".$value->SPECIES_ID."'>".ucwords($value->IDENTIFIER ."</a>"));
-	    ?></td></tr><?
-	  }
-  
-	}
+        $pokemomResult = getTrainers($pokemon);
+
+
+        while($value = getNext($pokemomResult)){
+            ?><tr>
+
+            <td><?echo (sprintf("%03s", $value->TRAINER_ID));
+            ?>
+            <?echo ("<a href='../trainers/profile.php?trainerID=".$value->TRAINER_ID."'>".ucwords($value->NAME ."</a>"));
+            ?></td></tr><?
+
+
+	    }
       }  
       ?>
     </table>
@@ -78,7 +77,7 @@ $pokemon = $search;
 	</thead>
   <?php
   
-  //Returns table of persons
+  //Returns table of pokemon
 	if(isset($search)){
 
 	$pokemomResult = getPokemon($pokemon);

@@ -14,12 +14,12 @@ include('../phpfuncts/getNext.php');
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../css/styles.css" rel="stylesheet" media="screen">
 </head>
-<body>
+<body class="meowped">
 <br /><br /><br /><br />
 
 <?
-$aID = $_POST["abilityID"];
-$aName = $_POST["abilityName"];
+$aID = $_GET["abilityID"];
+$aName = $_GET["abilityName"];
 ?>
 <h3>Pokemon who can have the ability <?echo($aName); ?></h3> <br /><br />
 

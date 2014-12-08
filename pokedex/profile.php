@@ -8,13 +8,16 @@ error_reporting(E_ALL);
 $url = $_SERVER['QUERY_STRING'];
 parse_str($url);
 
-if(isset($pokemon)){
-    echo $pokemon;
-}
 
 echo (" ");
 include('../phpfuncts/getPokemon.php');
+include('getProfile.php');
 $arrayPokemon = getPokemonProfile($pokemon);
+$profilePokemon = getProfile($pokemon);
+$pmoves = $profilePokemon[0];
+$pstats =  $profilePokemon[1];
+$pabilities = $profilePokemon[2];
+
 $value = $arrayPokemon[0];
 $type1 = $arrayPokemon[1];
 $type2 = $arrayPokemon[2];
@@ -34,63 +37,89 @@ $type2 = $arrayPokemon[2];
 <br /><br />
 <br /><br />
 
-<div class="parentPokedexProfileDiv">
-    <div class="pokedexProfileDiv">
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+<div id="pokeandtype" class="col-md-3">
         <?
         //IF VIEWING PROFILE OF POKEMON
         ?>
         <div class="pokemonProfileInfoPicture">
-            <?php
-            echo ("<img src='http://img.pokemondb.net/artwork/".$value->IDENTIFIER.".jpg'>");
-            ?>
-
-            <br />
-
-            <?php
+	    <?php
             echo(ucwords($value->IDENTIFIER) ."</a>". " ID:" . sprintf("%03s", $value->SPECIES_ID));
             ?>
-            <br /><br /><br />
+
+	    <br />
+
+            <?php
+            echo ("<img width='250' class='displayed'  src='http://img.pokemondb.net/artwork/".$value->IDENTIFIER.".jpg'>");
+            ?>
+
+            
+    </div>
+            
+            <br /><br />
+           
             <div class="pokemonTypeSelector">
                 <form action="../meowpedia/pokemon-types.php" method="get" id="pokemonTypeLink">
                     <input type="hidden" name="typeName" value ="<? echo($type1->NAME);?>">
-                    <button type="submit" class="types" id="<? echo($type1->NAME);?>" name="typeID" value="<? echo($type1->ID);?>"><? echo($type1->NAME);?></button>
+                    <button type="submit" class="types" id="<? echo(strtolower($type1->NAME));?>" name="typeID" value="<? echo($type1->TYPE_ID);?>"><? echo($type1->NAME);?></button>
                 </form>
 
-                <br />
+                
                 <?php
                 if($type2) {
                 ?>
                 <form action="../meowpedia/pokemon-types.php" method="get" id="pokemonTypeLink">
                     <input type="hidden" name="typeName" value ="<? echo($type2->NAME);?>">
-                    <button type="submit" class="types" id="<? echo($type2->NAME);?>" name="typeID" value="<? echo($type2->ID);?>"><? echo($type2->NAME);?></button>
+                    <button type="submit" class="types" id="<? echo(strtolower($type2->NAME));?>" name="typeID" value="<? echo($type2->TYPE_ID);?>"><? echo($type2->NAME);?></button>
                 </form>
-            </div>
+            
+    
         <?php
         }
         ?>
+                </div>
         </div>
+            <div class="col-md-7">
     <div class="pokemonDescription">
         <p id="descriptionText"></p>
     </div>
-    </div>
+
     <div class="pokemonProfileInfoDiv" id="pokemonProfileInfoDiv">
         <table id="pokemonInfo">
             <tr><th class="pokedexcolumnheader"></th><th class="pokedexcolumnheader"></th><th class="pokedexcolumnheader"></th></tr>
-            <tr><th>Ability: </th><td id="ability1"></td></tr>
-            <tr><th>Ability: </th><td id="ability2"></td></tr>
-            <tr><th>Attack: </th><td id="Attack"></td></tr>
-            <tr><th>Defense: </th><td id="Defense"></td></tr>
-            <tr><th>Special Attack: </th><td id="sp_atk"></td></tr>
-            <tr><th>Special Defense: </th><td id="sp_def"></td></tr>
-            <tr><th>Base Exp: </th><td id="exp"></td></tr>
-            <tr><th>Height: </th><td id="height"></td></tr>
-            <tr><th>HP: </th><td id="hp"></td></tr>
+            <tr><th>Ability: </th><td id="ability1"><?php echo(ucfirst(getNext($pabilities)->IDENTIFIER)); ?></td></tr>
+            <tr><th>Ability: </th><td id="ability2"><?php
+                    while($blah = getNext($pabilities)){
+                        echo(ucfirst($blah->IDENTIFIER));
+                    }
+                    ?></td></tr>
+            <tr><th>HP: </th><td id="hp"><?php echo(getNext($pstats)->BASE_STAT); ?></td></tr>
+            <tr><th>Attack: </th><td id="Attack"><?php echo(getNext($pstats)->BASE_STAT); ?></td></tr>
+            <tr><th>Defense: </th><td id="Defense"><?php echo(getNext($pstats)->BASE_STAT); ?></td></tr>
+            <tr><th>Special Attack: </th><td id="sp_atk"><?php echo(getNext($pstats)->BASE_STAT); ?></td></tr>
+            <tr><th>Special Defense: </th><td id="sp_def"><?php echo(getNext($pstats)->BASE_STAT); ?></td></tr>
+            <tr><th>Base Exp: </th><td id="exp"><?php echo($value->BASE_EXPERIENCE); ?></td></tr>
+            <tr><th>Height: </th><td id="height"><?php echo($value->HEIGHT); ?></td></tr>
         </table>
-        <br><br>
+        <br />
+        Moves:
+        <br />
+        <div id="moveTables">
         <table id="pokemonMoveTable">
             <tr><th id="movesHeader"></th></tr>
+            <?php
+                while($pmove = getNext($pmoves)) {
+                    echo("<tr><td>" . ucfirst($pmove->IDENTIFIER) . "</td></tr>");
+                }
+            ?>
+
         </table>
-        <br>
+        </div>
+        <br />
+    </div>
+    </div>
     </div>
 </div>
 <?php include('../header.php'); ?>
@@ -102,38 +131,11 @@ $type2 = $arrayPokemon[2];
             type: "GET",
             dataType: 'jsonp',
             success:function(html) {
-                populationInformtion(html);
-                populateMoves(html['moves']);
                 html = html['descriptions']
                 getDescription(html[1]);
 
             }
         });
-    }
-
-    function populationInformtion(html){
-        var ability1 = document.getElementById('ability1');
-        var ability2 = document.getElementById('ability2');
-        var attack = document.getElementById('Attack');
-        var defense = document.getElementById('Defense');
-        var exp = document.getElementById('exp');
-        var height = document.getElementById('height');
-        var hp = document.getElementById('hp');
-        var sp_atk = document.getElementById('sp_atk');
-        var sp_def = document.getElementById('sp_def');
-
-        var abilities = html['abilities'];
-        if(abilities[1] != undefined){
-            ability1.innerHTML = capitaliseFirstLetter(abilities[0]['name']) + " ";
-            ability2.innerHTML = capitaliseFirstLetter(abilities[1]['name']);
-        }
-        attack.innerHTML = html['attack'];
-        defense.innerHTML = html['defense'];
-        exp.innerHTML = html['exp'];
-        height.innerHTML = html['height'];
-        hp.innerHTML = html['hp'];
-        sp_atk.innerHTML = html['sp_atk'];
-        sp_def.innerHTML = html['sp_def'];
     }
     function getDescription(id) {
         $.ajax({
@@ -144,14 +146,6 @@ $type2 = $arrayPokemon[2];
                 document.getElementById('descriptionText').innerHTML = html['description'];
             }
         });
-    }
-    function populateMoves(moves){
-        var i = 0;
-        var box = document.getElementById('pokemonMoveTable');
-        for(i; i < moves.length; ++i) {
-            var move = moves[i];
-            box.innerHTML = box.innerHTML + "<tr><td>" + move['name'] + "</td></tr>";
-        }
     }
     function capitaliseFirstLetter(string)
     {

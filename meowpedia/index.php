@@ -19,10 +19,13 @@
 <div id="morgans" class="buttonBox"> 
 <center>
     <button type="button" class="btn btn-custom" onclick="window.location.href='abilities.php'">ABILITIES</button>
-	  <button type="button" class="btn btn-custom" onclick="window.location.href='moves.php'">MOVES</button> 
-	  <button type="button" class="btn btn-custom" onclick="window.location.href='egg-groups.php'">EGG GROUPS</button>
-	  <button type="button" class="btn btn-custom" onclick="window.location.href='types.php'">TYPES</button>
-	  <button type="button" class="btn btn-custom" onclick="myFunction()"># Tuples</button>
+  <button type="button" class="btn btn-custom" onclick="window.location.href='moves.php'">MOVES</button>
+  <button type="button" class="btn btn-custom" onclick="window.location.href='egg-groups.php'">EGG GROUPS</button>
+  <button type="button" class="btn btn-custom" onclick="window.location.href='types.php'">TYPES</button>
+  <button type="button" class="btn btn-custom" onclick="window.location.href='topstats.php'">TOP STATS</button>
+    <br />
+    <br />
+    <button type="button" class="btn btn-custom" onclick="myFunction()"># Tuples</button>
 </center>
 </div>
 

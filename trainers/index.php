@@ -41,7 +41,7 @@ $current = getNext($result);
     <?
     while ( $current ){ ?>
         <tr><td>
-            <form action='profile.php' method='post'>
+            <form action='profile.php' method='get'>
                 <button type='submit' name='trainerID' value='<?echo($current->TRAINER_ID)?>'><? echo($current->CLASS_NAME.' '.$current->NAME); ?></button>
             </form>
             </td>
